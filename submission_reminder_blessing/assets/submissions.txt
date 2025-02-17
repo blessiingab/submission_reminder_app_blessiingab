@@ -1,7 +1,0 @@
-Student,Assignment,Submission Status
-Chinemerem,Shell Navigation,Not Submitted
-Chiagoziem,Git,Submitted
-Divine,Shell Navigation,Not Submitted
-Anissa,Shell Basics,Submitted
-Teta,Shell Navigation,Not Submitted
-Aurore,Git,Submitted
