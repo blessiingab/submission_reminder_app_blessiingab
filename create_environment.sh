@@ -39,13 +39,17 @@ EOF
 
 # Populate submissions.txt with sample student records
 cat << EOF > "$main_dir/assets/submissions.txt"
-Student,Assignment,Submission Status
-Chinemerem,Shell Navigation,Not Submitted
-Chiagoziem,Git,Submitted
-Divine,Shell Navigation,Not Submitted
-Anissa,Shell Basics,Submitted
-Teta,Shell Navigation,Not Submitted
-Aurore,Git,Submitted
+student, assignment, submission status
+Chinemerem, Shell Navigation, not submitted
+Chiagoziem, Git, submitted
+Divine, Shell Navigation, not submitted
+Anissa, Shell Basics, submitted
+Kellia, assignment, submission status
+teta, Shell Navigation, not submitted
+Aurore, Git, submitted
+Divine, Shell Navigation, not submitted
+blessing, Shell Basics, submitted
+Dorcus,assignment,not submitted
 EOF
 
 # Populate functions.sh with a sample function
@@ -75,10 +79,10 @@ cat << 'EOF' > "$main_dir/app/reminder.sh"
 #!/bin/bash
 
 # Source environment variables and helper functions
-source ../config/config.env
-source ../modules/functions.sh
+source ./config/config.env
+source ./modules/functions.sh
 
-submissions_file="../assets/submissions.txt"
+submissions_file="./assets/submissions.txt"
 
 echo "Assignment: $ASSIGNMENT"
 echo "Days remaining to submit: $DAYS_REMAINING days"
@@ -93,7 +97,7 @@ cat << 'EOF' > "$main_dir/startup.sh"
 #!/bin/bash
 
 echo "Starting the Submission Reminder App..."
-bash ../app/reminder.sh
+bash ./app/reminder.sh
 EOF
 chmod +x "$main_dir/startup.sh"
 
