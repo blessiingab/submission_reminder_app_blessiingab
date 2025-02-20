@@ -63,16 +63,16 @@ EOL
 # Create submissions.txt inside the assets folder
 cat > "$main_dir/assets/submissions.txt" <<EOL
 student, assignment, submission status
-Chinemerem, Shell Navigation, not submitted
-Chiagoziem, Git, submitted
-Divine, Shell Navigation, not submitted
-Anissa, Shell Basics, submitted
-Linda, Shell Basics, submitted
-Hirwa, Shell Navigation, submitted
-Fanny, Git, not submitted
-Derrick, Git, submitted
-Kelly, Shell Basics, not submitted
-Reine, Shell Navigation, submitted
+Grace, Shell Navigation, not submitted
+Michael, Git, submitted
+Samuel, Shell Navigation, not submitted
+Sophia, Shell Basics, submitted
+Ethan, Shell Basics, submitted
+Olivia, Shell Navigation, submitted
+Liam, Git, not submitted
+Noah, Git, submitted
+Emma, Shell Basics, not submitted
+Ava, Shell Navigation, submitted
 EOL
 
 # Create startup.sh in the main directory
