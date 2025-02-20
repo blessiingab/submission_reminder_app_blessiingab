@@ -1,44 +1,23 @@
 #!/bin/bash
 
-# Prompt for user's name
-read -p "Enter your name: " userName
+mkdir -p submission_reminder_app
 
-# Validate user input
-if [[ -z "$userName" ]]; then
-    echo "Error: Name cannot be empty. Exiting."
-    exit 1
-fi
+mkdir -p submission_reminder_app/assets
+mkdir -p submission_reminder_app/config
+mkdir -p submission_reminder_app/modules
+mkdir -p submission_reminder_app/app
 
-# Define the main directory name
-main_dir="submission_reminder_${userName}"
+cat <<EOL > submission_reminder_app/assets/submissions.txt
+#!/bin/bash
 
-# Check if directory already exists
-if [[ -d "$main_dir" ]]; then
-    echo "Error: Directory $main_dir already exists. Exiting."
-    exit 1
-fi
+mkdir -p submission_reminder_app
 
-# Create the main directory and subdirectories
-mkdir -p "$main_dir/app" "$main_dir/config" "$main_dir/modules" "$main_dir/assets"
-echo "Creating project structure..."
+mkdir -p submission_reminder_app/assets
+mkdir -p submission_reminder_app/config
+mkdir -p submission_reminder_app/modules
+mkdir -p submission_reminder_app/app
 
-# Create necessary files
-touch "$main_dir/config/config.env"
-touch "$main_dir/app/reminder.sh"
-touch "$main_dir/modules/functions.sh"
-touch "$main_dir/assets/submissions.txt"
-touch "$main_dir/startup.sh"
-touch "$main_dir/README.md"
-
-# Populate config.env with sample configurations
-cat << EOF > "$main_dir/config/config.env"
-# Configuration File
-ASSIGNMENT="Shell Scripting Project"
-DAYS_REMAINING=3
-EOF
-
-# Populate submissions.txt with sample student records
-cat << EOF > "$main_dir/assets/submissions.txt"
+cat <<EOL > submission_reminder_app/assets/submissions.txt
 student, assignment, submission status
 Chinemerem, Shell Navigation, not submitted
 Chiagoziem, Git, submitted
@@ -50,87 +29,62 @@ Aurore, Git, submitted
 Divine, Shell Navigation, not submitted
 blessing, Shell Basics, submitted
 Dorcus,assignment,not submitted
-EOF
+EOL
 
-# Populate functions.sh with a sample function
-cat << 'EOF' > "$main_dir/modules/functions.sh"
+cat <<EOL > submission_reminder_app/config/config.env
+ASSIGNMENT="Shell Navigation"
+DAYS_REMAINING=2
+EOL
+
+cat <<EOL > submission_reminder_app/modules/functions.sh
 #!/bin/bash
 
-# Function to check student submissions
-check_submissions() {
-    local submissions_file="$1"
-    echo "Checking submissions in $submissions_file"
-    
+function check_submissions {
+    local submissions_file=\$1
+    echo "Checking submissions in \$submissions_file"
+
     while IFS=, read -r student assignment status; do
-        student=$(echo "$student" | xargs)
-        assignment=$(echo "$assignment" | xargs)
-        status=$(echo "$status" | xargs)
+        # Remove leading and trailing whitespace
+        student=\$(echo "\$student" | xargs)
+        assignment=\$(echo "\$assignment" | xargs)
+        status=\$(echo "\$status" | xargs)
 
-        if [[ "$assignment" == "$ASSIGNMENT" && "$status" == "Not Submitted" ]]; then
-            echo "Reminder: $student has not submitted the $ASSIGNMENT assignment!"
+        if [[ "\$assignment" == "\$ASSIGNMENT" && "\$status" == "not submitted" ]]; then
+            echo "Reminder: \$student has not submitted the \$ASSIGNMENT assignment!"
         fi
-    done < <(tail -n +2 "$submissions_file")
+    done < <(tail -n +2 "\$submissions_file") # Skip the header
 }
-EOF
-chmod +x "$main_dir/modules/functions.sh"
+EOL
 
-# Populate reminder.sh with basic logic
-cat << 'EOF' > "$main_dir/app/reminder.sh"
+cat <<EOL > submission_reminder_app/app/reminder.sh
 #!/bin/bash
 
-# Source environment variables and helper functions
 source ./config/config.env
 source ./modules/functions.sh
 
-submissions_file="/assets/submissions.txt"
+submissions_file="./assets/submissions.txt"
 
-echo "Assignment: $ASSIGNMENT"
-echo "Days remaining to submit: $DAYS_REMAINING days"
+
+echo "Assignment: \$ASSIGNMENT"
+echo "Days remaining to submit: \$DAYS_REMAINING days"
 echo "--------------------------------------------"
 
-check_submissions "$submissions_file"
-EOF
-chmod +x "$main_dir/app/reminder.sh"
+check_submissions \$submissions_file
+EOL
 
-# Populate startup.sh to run the app
-cat << 'EOF' > "$main_dir/startup.sh"
+cat <<EOL > submission_reminder_app/startup.sh
 #!/bin/bash
 
-echo "Starting the Submission Reminder App..."
-bash ./app/reminder.sh
-EOF
-chmod +x "$main_dir/startup.sh"
+echo "Starting the submission reminder application..."
 
-# Populate README.md with instructions
-cat << EOF > "$main_dir/README.md"
-# Submission Reminder App
+./app/reminder.sh
+EOL
 
-This application helps students track and receive alerts about upcoming assignment deadlines.
+chmod +x submission_reminder_app/app/reminder.sh
+chmod +x submission_reminder_app/startup.sh
+chmod +x submission_reminder_app/modules/functions.sh
 
-## Setup Instructions:
-1. Run the setup script:
-   \`\`\`
-   chmod +x create_environment.sh
-   ./create_environment.sh
-   \`\`\`
-2. Navigate to the created directory and start the app:
-   \`\`\`
-   cd submission_reminder_${userName}/scripts
-   chmod +x startup.sh
-   ./startup.sh
-   \`\`\`
+echo "Environment setup complete!"
+EOL
 
-## Project Structure:
-- \`config.env\` → Stores environment variables
-- \`submissions.txt\` → Contains student assignment records
-- \`reminder.sh\` → Handles reminder notifications
-- \`functions.sh\` → Includes helper functions
-- \`startup.sh\` → Starts the application
-
-## Author:
-Created by **${userName}**
-EOF
-echo "Setup complete! Running the application..."
-cd "$main_dir"
-./startup.sh
 
