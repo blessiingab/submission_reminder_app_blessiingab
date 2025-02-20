@@ -131,5 +131,6 @@ This application helps students track and receive alerts about upcoming assignme
 Created by **${userName}**
 EOF
 
-echo "Setup complete! Your project directory is: $main_dir"
-
+echo "Setup complete! Run the application..."
+cd "$main_dir"
+./startup.sh
