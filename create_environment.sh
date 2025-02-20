@@ -82,7 +82,7 @@ cat << 'EOF' > "$main_dir/app/reminder.sh"
 source ./config/config.env
 source ./modules/functions.sh
 
-submissions_file="./assets/submissions.txt"
+submissions_file="../assets/submissions.txt"
 
 echo "Assignment: $ASSIGNMENT"
 echo "Days remaining to submit: $DAYS_REMAINING days"
@@ -130,7 +130,7 @@ This application helps students track and receive alerts about upcoming assignme
 ## Author:
 Created by **${userName}**
 EOF
-
-echo "Setup complete! Run the application..."
+echo "Setup complete! Running the application..."
 cd "$main_dir"
 ./startup.sh
+
