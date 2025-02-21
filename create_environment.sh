@@ -73,6 +73,34 @@ Liam, Git, not submitted
 Noah, Git, submitted
 Emma, Shell Basics, not submitted
 Ava, Shell Navigation, submitted
+William, Shell Navigation, not submitted
+James, Git, submitted
+Benjamin, Shell Basics, not submitted
+Charlotte, Shell Basics, submitted
+Amelia, Shell Navigation, submitted
+Lucas, Git, not submitted
+Henry, Shell Navigation, not submitted
+Alexander, Git, submitted
+Mia, Shell Basics, not submitted
+Harper, Shell Navigation, submitted
+Elijah, Shell Basics, submitted
+Daniel, Git, not submitted
+Sebastian, Shell Navigation, submitted
+Jack, Shell Basics, not submitted
+Aiden, Git, submitted
+Chloe, Shell Navigation, not submitted
+Emily, Git, submitted
+Evelyn, Shell Basics, not submitted
+Scarlett, Shell Navigation, submitted
+Zoe, Git, not submitted
+Nathan, Shell Basics, submitted
+Lily, Git, submitted
+Hannah, Shell Navigation, not submitted
+Ryan, Shell Basics, not submitted
+Carter, Git, submitted
+Madison, Shell Navigation, submitted
+Owen, Shell Basics, not submitted
+Ella, Git, submitted
 EOL
 
 # Create startup.sh in the main directory
